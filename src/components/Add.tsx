@@ -31,14 +31,13 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
   const fetchAdvertise = async (advertiser: Advertiser) => {
     try {
       const response: AddItem = await getAdvertise(advertiser, size)
-      console.log(response)
       setAddInfo(response)
     } catch (e) {
       console.error(e)
     }
   }
   useEffect(() => {
-    const key = `${new Date().getTime()}`
+    const key = `${Math.floor(Math.random() * 1000000)}`
     registerAdd(key)
     setKey(key)
   }, [])
@@ -55,7 +54,8 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
       className={styles.add}
       style={{
         width: dimension.width,
-        height: dimension.height
+        height: dimension.height,
+        display: 'inline-block'
       }}
       key={key}
       href={addInfo && addInfo.url}
@@ -63,6 +63,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
       rel='noreferrer'
       onClick={onAddClicked}
     >
+      {imageLoaded && <span className={styles.add_label}>Ad</span>}
       {!imageLoaded ? (
         <img
           src={`https://via.placeholder.com/${dimension.width}x${dimension.height}.png?text=AD`}
@@ -74,6 +75,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
           className={styles.add_img}
           src={addInfo.img}
           alt={addInfo.title}
+          style={{ visibility: imageLoaded ? 'visible' : 'hidden' }}
         />
       )}
     </a>

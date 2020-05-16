@@ -29,7 +29,7 @@ var initialContext = {
 };
 var AppContext = React.createContext(initialContext);
 
-var styles = {"add":"_styles-module__add__2cHmE","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
+var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
 
 var advertisers = [{
   advertiser: 'add1'
@@ -102,7 +102,6 @@ var Add = function Add(props) {
     try {
       var _temp2 = _catch(function () {
         return Promise.resolve(getAdvertise(advertiser, size)).then(function (response) {
-          console.log(response);
           setAddInfo(response);
         });
       }, function (e) {
@@ -116,7 +115,7 @@ var Add = function Add(props) {
   };
 
   React.useEffect(function () {
-    var key = "" + new Date().getTime();
+    var key = "" + Math.floor(Math.random() * 1000000);
     registerAdd(key);
     setKey(key);
   }, []);
@@ -133,14 +132,17 @@ var Add = function Add(props) {
     className: styles.add,
     style: {
       width: dimension.width,
-      height: dimension.height
+      height: dimension.height,
+      display: 'inline-block'
     },
     key: key,
     href: addInfo && addInfo.url,
     target: '_blank',
     rel: 'noreferrer',
     onClick: onAddClicked
-  }, !imageLoaded ? React__default.createElement("img", {
+  }, imageLoaded && React__default.createElement("span", {
+    className: styles.add_label
+  }, "Ad"), !imageLoaded ? React__default.createElement("img", {
     src: "https://via.placeholder.com/" + dimension.width + "x" + dimension.height + ".png?text=AD"
   }) : null, addInfo && React__default.createElement("img", {
     onLoad: function onLoad() {
@@ -148,7 +150,10 @@ var Add = function Add(props) {
     },
     className: styles.add_img,
     src: addInfo.img,
-    alt: addInfo.title
+    alt: addInfo.title,
+    style: {
+      visibility: imageLoaded ? 'visible' : 'hidden'
+    }
   }));
 };
 
@@ -239,6 +244,7 @@ var AddProvider = function AddProvider(_ref) {
               addKey: addSlots[index]
             });
           });
+          console.log(advertisersMapToAdd);
           dispatch({
             type: 'SET_ADVERTISERS',
             payload: advertisersMapToAdd

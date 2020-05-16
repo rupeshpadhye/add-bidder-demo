@@ -42,6 +42,7 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
           addKey: addSlots[index]
         }
       })
+      console.log(advertisersMapToAdd)
       dispatch({
         type: 'SET_ADVERTISERS',
         payload: advertisersMapToAdd
@@ -59,7 +60,6 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
       fetchAdvisers(addSlots)
     }
   }, [addSlots])
-
   return (
     <div>
       <AppContext.Provider

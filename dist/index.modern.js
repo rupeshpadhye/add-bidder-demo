@@ -7,7 +7,7 @@ const initialContext = {
 };
 const AppContext = createContext(initialContext);
 
-var styles = {"add":"_styles-module__add__2cHmE","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
+var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
 
 const advertisers = [{
   advertiser: 'add1'
@@ -72,7 +72,6 @@ const Add = props => {
   const fetchAdvertise = async advertiser => {
     try {
       const response = await getAdvertise(advertiser, size);
-      console.log(response);
       setAddInfo(response);
     } catch (e) {
       console.error(e);
@@ -80,7 +79,7 @@ const Add = props => {
   };
 
   useEffect(() => {
-    const key = `${new Date().getTime()}`;
+    const key = `${Math.floor(Math.random() * 1000000)}`;
     registerAdd(key);
     setKey(key);
   }, []);
@@ -95,20 +94,26 @@ const Add = props => {
     className: styles.add,
     style: {
       width: dimension.width,
-      height: dimension.height
+      height: dimension.height,
+      display: 'inline-block'
     },
     key: key,
     href: addInfo && addInfo.url,
     target: '_blank',
     rel: 'noreferrer',
     onClick: onAddClicked
-  }, !imageLoaded ? React.createElement("img", {
+  }, imageLoaded && React.createElement("span", {
+    className: styles.add_label
+  }, "Ad"), !imageLoaded ? React.createElement("img", {
     src: `https://via.placeholder.com/${dimension.width}x${dimension.height}.png?text=AD`
   }) : null, addInfo && React.createElement("img", {
     onLoad: () => setImageLoaded(true),
     className: styles.add_img,
     src: addInfo.img,
-    alt: addInfo.title
+    alt: addInfo.title,
+    style: {
+      visibility: imageLoaded ? 'visible' : 'hidden'
+    }
   }));
 };
 
@@ -173,6 +178,7 @@ const AddProvider = ({
           addKey: addSlots[index]
         };
       });
+      console.log(advertisersMapToAdd);
       dispatch({
         type: 'SET_ADVERTISERS',
         payload: advertisersMapToAdd

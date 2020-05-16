@@ -1,9 +1,15 @@
 /* add css module styles here (optional) */
 ._styles-module__add__2cHmE {
     border: 1px solid #eee;
-    padding: 0.5em ;
     text-align: center;
-    display: inline-block;
+    position: relative;
+}
+
+._styles-module__add_label__3Ye3t {
+    position: absolute;
+    left: 0;
+    padding: 1px;
+    color: red;
 }
 
 ._styles-module__add_img__uRz1r {

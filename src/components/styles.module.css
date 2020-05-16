@@ -1,9 +1,15 @@
 /* add css module styles here (optional) */
 .add {
     border: 1px solid #eee;
-    padding: 0.5em ;
     text-align: center;
-    display: inline-block;
+    position: relative;
+}
+
+.add_label {
+    position: absolute;
+    left: 0;
+    padding: 1px;
+    color: red;
 }
 
 .add_img {
