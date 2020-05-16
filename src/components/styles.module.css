@@ -1,0 +1,25 @@
+/* add css module styles here (optional) */
+.add {
+    border: 1px solid #eee;
+    padding: 0.5em ;
+    text-align: center;
+    display: inline-block;
+}
+
+.add_img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.img_placeholder {
+    font-size: medium;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+}
+
