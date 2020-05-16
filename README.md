@@ -1,8 +1,7 @@
-# add-bidder
+# Add-bidder Demo
 
-> add bidding client side sdk
-
-[![NPM](https://img.shields.io/npm/v/add-bidder.svg)](https://www.npmjs.com/package/add-bidder) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+> This is demo client side add bidder library , client can consume this library to show
+ adds on there sites
 
 ## Install
 
@@ -14,17 +13,16 @@ npm install --save add-bidder
 
 ```tsx
 import React, { Component } from 'react'
-
-import MyComponent from 'add-bidder'
+import { AddProvider, Add } from 'add-bidder';
 import 'add-bidder/dist/index.css'
 
-class Example extends Component {
+class App extends Component {
   render() {
-    return <MyComponent />
+    return (
+         <AddProvider clientId="client-233434">
+          <Add size="banner"/>
+         </AddProvider>
+    )
   }
 }
 ```
-
-## License
-
-MIT © [rupeshpadhye](https://github.com/rupeshpadhye)
