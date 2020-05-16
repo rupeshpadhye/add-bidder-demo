@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "070ec7ca2ed7451e7bb02f0cbe40da72",
+    "revision": "0c8d44d3bbe3bd2cb377476254f64570",
     "url": "/add-bidder-demo/index.html"
   },
   {
-    "revision": "b896bcc1aae619d21207",
-    "url": "/add-bidder-demo/static/css/main.ac5aab58.chunk.css"
+    "revision": "8eb504eebb6425f21287",
+    "url": "/add-bidder-demo/static/css/main.6d1614f8.chunk.css"
   },
   {
     "revision": "d563d13aeebf0e11eaee",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/add-bidder-demo/static/js/2.7bc376bf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b896bcc1aae619d21207",
-    "url": "/add-bidder-demo/static/js/main.3fdb5eb7.chunk.js"
+    "revision": "8eb504eebb6425f21287",
+    "url": "/add-bidder-demo/static/js/main.dfb402c6.chunk.js"
   },
   {
     "revision": "d5955aea616c00ca9f4e",
