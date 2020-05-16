@@ -1,6 +1,6 @@
 {
-  "short_name": "add-bidder",
-  "name": "add-bidder",
+  "short_name": "add-bidder-example",
+  "name": "add-bidder-example",
   "icons": [
     {
       "src": "favicon.ico",
