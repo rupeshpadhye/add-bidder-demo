@@ -28,12 +28,12 @@ var initialContext = {
 };
 var AppContext = React.createContext(initialContext);
 
-var styles = {"add":"_2cHmE","add_label":"_3Ye3t","add_img":"_uRz1r","img_placeholder":"_26Ljj"};
+var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
 
 var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
   try {
     console.log('exclude', exclude);
-    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
+    return Promise.resolve(fetch("http://localhost:3001" + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
       return response.json();
     });
   } catch (e) {
@@ -42,17 +42,20 @@ var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
 };
 var getAdvertise = function getAdvertise(advertiser, size) {
   try {
-    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertisers/" + advertiser + "/advertise?size=" + size + "&random=true")).then(function (response) {
+    return Promise.resolve(fetch("http://localhost:3001" + "/advertisers/" + advertiser + "/advertise?size=" + size + "&random=true")).then(function (response) {
       return response.json();
     });
   } catch (e) {
     return Promise.reject(e);
   }
 };
-var recordConversions = function recordConversions(uid) {
+var recordConversions = function recordConversions(uid, clientId) {
   try {
-    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertise/" + uid + "/conversion", {
-      method: 'POST'
+    return Promise.resolve(fetch("http://localhost:3001" + "/advertise/" + uid + "/conversion", {
+      method: 'POST',
+      body: JSON.stringify({
+        clientId: clientId
+      })
     })).then(function (response) {
       return response.ok;
     });
@@ -224,7 +227,7 @@ var AddProvider = function AddProvider(_ref) {
   var addConversion = function addConversion(uid) {
     try {
       var _temp2 = _catch(function () {
-        return Promise.resolve(recordConversions(uid)).then(function () {});
+        return Promise.resolve(recordConversions(uid, clientId)).then(function () {});
       }, function (err) {
         console.log(err);
       });

@@ -19,9 +19,10 @@ export const getAdvertise = async (
   return response.json()
 }
 
-export const recordConversions = async (uid: string): Promise<boolean> => {
+export const recordConversions = async (uid: string, clientId: string): Promise<boolean> => {
   const response = await fetch(`${API_URL}/advertise/${uid}/conversion`,{
-    method: 'POST'
+    method: 'POST',
+    body: JSON.stringify({clientId})
   })
   return response.ok;
 }

@@ -24,7 +24,7 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
 
   const addConversion = async (uid: string) => {
     try {
-      await recordConversions(uid)
+      await recordConversions(uid,clientId)
     } catch (err) {
       console.log(err)
     }

@@ -1,25 +1,25 @@
 /* add css module styles here (optional) */
-._2cHmE {
+._styles-module__add__2cHmE {
     border: 1px solid #eee;
     text-align: center;
     position: relative;
 }
 
-._3Ye3t {
+._styles-module__add_label__3Ye3t {
     position: absolute;
     left: 0;
     padding: 1px;
     color: red;
 }
 
-._uRz1r {
+._styles-module__add_img__uRz1r {
     max-width: 100%;
     max-height: 100%;
     -o-object-fit: contain;
        object-fit: contain;
 }
 
-._26Ljj {
+._styles-module__img_placeholder__26Ljj {
     font-size: medium;
     color: gray;
     display: flex;
