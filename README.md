@@ -50,4 +50,4 @@ class App extends Component {
 ```
 
 ## Boilerplate Code 
-[boiler plate code is taken from create-react-library ](https://github.com/transitive-bullshit/create-react-library)
+[create-react-library ](https://github.com/transitive-bullshit/create-react-library)
