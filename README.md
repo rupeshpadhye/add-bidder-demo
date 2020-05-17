@@ -1,4 +1,4 @@
-# Add Bidder Demo [Demo Link](https://rupeshpadhye.github.io/add-bidder-demo/)
+# Add Bidder Demo [Link](https://rupeshpadhye.github.io/add-bidder-demo/)
 
 > This is demo client side add bidder library , client can consume this library to show
  adds on there sites
