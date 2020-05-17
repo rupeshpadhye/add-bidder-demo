@@ -1,6 +1,6 @@
-export interface Advertiser {
-  addKey?: string
-  advertiser: string
+export interface AdvertiserAddMapping {
+  advertiser: string,
+  addKey: string
 }
 
 export interface AddItem {

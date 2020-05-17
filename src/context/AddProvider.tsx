@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import AppReducer from './AddReducer'
 import AppContext from './addContext'
 import { getAdvertisers, recordConversions } from '../api'
-import { Advertiser } from '../types'
+import { AdvertiserAddMapping } from '../types'
 
 type addProviderProps = {
   clientId: string
@@ -31,14 +31,15 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
   }
   const fetchAdvisers = async (addSlots: string[]) => {
     try {
-      const availableAdvertisers: Advertiser[] = await getAdvertisers(
+      const availableAdvertisers: string [] = await getAdvertisers(
         addSlots.length,
-        advertisers.map((a: Advertiser) => a.advertiser)
+        advertisers,
+        clientId
       )
-
-      const advertisersMapToAdd = availableAdvertisers.map((a, index) => {
+      const advertisersMapToAdd : AdvertiserAddMapping [] = 
+      availableAdvertisers.map((a, index) => {
         return {
-          ...a,
+          advertiser: a,
           addKey: addSlots[index]
         }
       })

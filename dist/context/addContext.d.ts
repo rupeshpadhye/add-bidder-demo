@@ -1,9 +1,9 @@
 /// <reference types="react" />
-import { Advertiser } from '../types';
+import { AdvertiserAddMapping } from '../types';
 interface ContextType {
     registerAdd: (id: string) => void;
     addConversion: (id: string) => void;
-    advertisers: Array<Advertiser>;
+    advertisers: Array<AdvertiserAddMapping>;
 }
 declare const AppContext: import("react").Context<ContextType>;
 export default AppContext;

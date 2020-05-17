@@ -1,10 +1,10 @@
 import { createContext } from 'react'
-import { Advertiser } from '../types'
+import { AdvertiserAddMapping } from '../types'
 
 interface ContextType {
   registerAdd: (id: string) => void
   addConversion: (id: string) => void
-  advertisers: Array<Advertiser>
+  advertisers: Array<AdvertiserAddMapping>
 }
 
 const initialContext: ContextType = {

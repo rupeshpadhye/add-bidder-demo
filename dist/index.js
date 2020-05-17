@@ -29,41 +29,38 @@ var initialContext = {
 };
 var AppContext = React.createContext(initialContext);
 
-var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
+var styles = {"add":"_2cHmE","add_label":"_3Ye3t","add_img":"_uRz1r","img_placeholder":"_26Ljj"};
 
-var advertisers = [{
-  advertiser: 'add1'
-}, {
-  advertiser: 'add2'
-}];
-var adds = {
-  add1: {
-    uid: 'uid-1',
-    img: 'https://firebasestorage.googleapis.com/v0/b/renteasy-3ce44.appspot.com/o/1000-1.jpg?alt=media&token=9350dae5-990c-43a1-99ee-594d74533b39',
-    url: 'https://www.amazon.com/Rupesh-Padhye-Rent-Easy/dp/B01M5IDOYG/ref=sr_1_1?s=mobile-apps&ie=UTF8&qid=1530965429&sr=1-1&keywords=rent+easy'
-  },
-  add2: {
-    uid: 'uid-1',
-    img: 'https://firebasestorage.googleapis.com/v0/b/renteasy-3ce44.appspot.com/o/1000-3.jpg?alt=media&token=0a737b2b-98a8-44da-91bc-41dd21d2b906',
-    url: 'https://www.amazon.com/Rupesh-Padhye-Rent-Easy/dp/B01M5IDOYG/ref=sr_1_1?s=mobile-apps&ie=UTF8&qid=1530965429&sr=1-1&keywords=rent+easy'
-  },
-  add3: {
-    uid: 'uid-1',
-    img: 'https://firebasestorage.googleapis.com/v0/b/renteasy-3ce44.appspot.com/o/1000-3.jpg?alt=media&token=0a737b2b-98a8-44da-91bc-41dd21d2b906',
-    url: 'https://www.amazon.com/Rupesh-Padhye-Rent-Easy/dp/B01M5IDOYG/ref=sr_1_1?s=mobile-apps&ie=UTF8&qid=1530965429&sr=1-1&keywords=rent+easy'
+var API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://https://add-bidder-qbtzze4rda-de.a.run.app';
+var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
+  try {
+    console.log('exclude', exclude);
+    return Promise.resolve(fetch(API_URL + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
+      return response.json();
+    });
+  } catch (e) {
+    return Promise.reject(e);
   }
 };
-var getAdvertisers = function getAdvertisers(count, exclude) {
-  console.log(count, exclude);
-  return Promise.resolve(advertisers);
-};
-var getAdvertise = function getAdvertise(advertiserInfo, size) {
-  console.log(size);
-  return Promise.resolve(adds[advertiserInfo.advertiser]);
+var getAdvertise = function getAdvertise(advertiser, size) {
+  try {
+    return Promise.resolve(fetch(API_URL + "/advertisers/" + advertiser + "/advertise?size=" + size + "&random=true")).then(function (response) {
+      return response.json();
+    });
+  } catch (e) {
+    return Promise.reject(e);
+  }
 };
 var recordConversions = function recordConversions(uid) {
-  console.log(uid);
-  return Promise.resolve();
+  try {
+    return Promise.resolve(fetch(API_URL + "/advertise/" + uid + "/conversion", {
+      method: 'POST'
+    })).then(function (response) {
+      return response.ok;
+    });
+  } catch (e) {
+    return Promise.reject(e);
+  }
 };
 
 var ADD_DIMENSION = {
@@ -98,9 +95,10 @@ var Add = function Add(props) {
     addInfo && addConversion(addInfo.uid);
   };
 
-  var fetchAdvertise = function fetchAdvertise(advertiser) {
+  var fetchAdvertise = function fetchAdvertise(advertiserAddMapping) {
     try {
       var _temp2 = _catch(function () {
+        var advertiser = advertiserAddMapping.advertiser;
         return Promise.resolve(getAdvertise(advertiser, size)).then(function (response) {
           setAddInfo(response);
         });
@@ -143,8 +141,10 @@ var Add = function Add(props) {
   }, imageLoaded && React__default.createElement("span", {
     className: styles.add_label
   }, "Ad"), !imageLoaded ? React__default.createElement("img", {
+    decoding: "async",
     src: "https://via.placeholder.com/" + dimension.width + "x" + dimension.height + ".png?text=AD"
   }) : null, addInfo && React__default.createElement("img", {
+    decoding: "async",
     onLoad: function onLoad() {
       return setImageLoaded(true);
     },
@@ -236,13 +236,12 @@ var AddProvider = function AddProvider(_ref) {
   var fetchAdvisers = function fetchAdvisers(addSlots) {
     try {
       var _temp4 = _catch(function () {
-        return Promise.resolve(getAdvertisers(addSlots.length, advertisers.map(function (a) {
-          return a.advertiser;
-        }))).then(function (availableAdvertisers) {
+        return Promise.resolve(getAdvertisers(addSlots.length, advertisers, clientId)).then(function (availableAdvertisers) {
           var advertisersMapToAdd = availableAdvertisers.map(function (a, index) {
-            return _extends(_extends({}, a), {}, {
+            return {
+              advertiser: a,
               addKey: addSlots[index]
-            });
+            };
           });
           console.log(advertisersMapToAdd);
           dispatch({
