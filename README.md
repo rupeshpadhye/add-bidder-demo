@@ -1,11 +1,9 @@
-# Add Bidder Demo [Link](https://rupeshpadhye.github.io/add-bidder-demo/)
+# Add Bidder Demo
 
 > This is demo client side add bidder library , client can consume this library to show
  adds on there sites
 
-## BoilerPlate Code 
-[boiler plate code is taken from create-react-library ](https://github.com/transitive-bullshit/create-react-library)
-
+## [Demo Link](https://rupeshpadhye.github.io/add-bidder-demo/)
 ## Local Development
 
 Local development is broken into two parts (ideally using two tabs).
@@ -50,3 +48,6 @@ class App extends Component {
   }
 }
 ```
+
+## Boilerplate Code 
+[boiler plate code is taken from create-react-library ](https://github.com/transitive-bullshit/create-react-library)
