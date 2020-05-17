@@ -4,23 +4,22 @@ var React = require('react');
 var React__default = _interopDefault(React);
 
 // A type of promise-like that resolves synchronously and supports only one observer
+const _iteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator")) : "@@iterator"; // Asynchronously iterate through an object's values
+const _asyncIteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.asyncIterator || (Symbol.asyncIterator = Symbol("Symbol.asyncIterator")) : "@@asyncIterator"; // Asynchronously iterate on a value using it's async iterator if present, or its synchronous iterator if missing
 
-const _iteratorSymbol = /*#__PURE__*/ typeof Symbol !== "undefined" ? (Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator"))) : "@@iterator";
-
-const _asyncIteratorSymbol = /*#__PURE__*/ typeof Symbol !== "undefined" ? (Symbol.asyncIterator || (Symbol.asyncIterator = Symbol("Symbol.asyncIterator"))) : "@@asyncIterator";
-
-// Asynchronously call a function and send errors to recovery continuation
 function _catch(body, recover) {
-	try {
-		var result = body();
-	} catch(e) {
-		return recover(e);
-	}
-	if (result && result.then) {
-		return result.then(void 0, recover);
-	}
-	return result;
-}
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+
+  return result;
+} // Asynchronously await a promise and pass the result to a finally continuation
 
 var initialContext = {
   advertisers: [],
@@ -29,13 +28,12 @@ var initialContext = {
 };
 var AppContext = React.createContext(initialContext);
 
-var styles = {"add":"_2cHmE","add_label":"_3Ye3t","add_img":"_uRz1r","img_placeholder":"_26Ljj"};
+var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
 
-var API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://https://add-bidder-qbtzze4rda-de.a.run.app';
 var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
   try {
-    console.log('exclude', exclude);
-    return Promise.resolve(fetch(API_URL + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
+    console.log('exclude 2434', exclude);
+    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
       return response.json();
     });
   } catch (e) {
@@ -44,7 +42,7 @@ var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
 };
 var getAdvertise = function getAdvertise(advertiser, size) {
   try {
-    return Promise.resolve(fetch(API_URL + "/advertisers/" + advertiser + "/advertise?size=" + size + "&random=true")).then(function (response) {
+    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertisers/" + advertiser + "/advertise?size=" + size + "&random=true")).then(function (response) {
       return response.json();
     });
   } catch (e) {
@@ -53,7 +51,7 @@ var getAdvertise = function getAdvertise(advertiser, size) {
 };
 var recordConversions = function recordConversions(uid) {
   try {
-    return Promise.resolve(fetch(API_URL + "/advertise/" + uid + "/conversion", {
+    return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertise/" + uid + "/conversion", {
       method: 'POST'
     })).then(function (response) {
       return response.ok;
