@@ -28,11 +28,11 @@ var initialContext = {
 };
 var AppContext = React.createContext(initialContext);
 
-var styles = {"add":"_styles-module__add__2cHmE","add_label":"_styles-module__add_label__3Ye3t","add_img":"_styles-module__add_img__uRz1r","img_placeholder":"_styles-module__img_placeholder__26Ljj"};
+var styles = {"add":"_2cHmE","add_label":"_3Ye3t","add_img":"_uRz1r","img_placeholder":"_26Ljj"};
 
 var getAdvertisers = function getAdvertisers(count, exclude, clientId) {
   try {
-    console.log('exclude 2434', exclude);
+    console.log('exclude', exclude);
     return Promise.resolve(fetch("https://add-bidder-qbtzze4rda-de.a.run.app" + "/advertisers?count=" + count + "&clientId=" + clientId)).then(function (response) {
       return response.json();
     });
@@ -111,7 +111,7 @@ var Add = function Add(props) {
   };
 
   React.useEffect(function () {
-    var key = "" + Math.floor(Math.random() * 1000000);
+    var key = props.addKey || "" + Math.floor(Math.random() * 1000000);
     registerAdd(key);
     setKey(key);
   }, []);
@@ -123,7 +123,7 @@ var Add = function Add(props) {
     if (advertiser && !addInfo) {
       fetchAdvertise(advertiser);
     }
-  }, [advertisers]);
+  }, [advertisers, key]);
   return React__default.createElement("a", {
     className: styles.add,
     style: {
@@ -131,14 +131,17 @@ var Add = function Add(props) {
       height: dimension.height,
       display: 'inline-block'
     },
-    key: key,
+    id: key,
     href: addInfo && addInfo.url,
     target: '_blank',
     rel: 'noreferrer',
-    onClick: onAddClicked
+    onClick: onAddClicked,
+    "data-test-id": "add-block"
   }, imageLoaded && React__default.createElement("span", {
+    "data-test-id": "add-block-placeholder",
     className: styles.add_label
   }, "Ad"), !imageLoaded ? React__default.createElement("img", {
+    "data-test-id": "add-block-dummy-image",
     decoding: "async",
     src: "https://via.placeholder.com/" + dimension.width + "x" + dimension.height + ".png?text=AD"
   }) : null, addInfo && React__default.createElement("img", {
@@ -151,7 +154,8 @@ var Add = function Add(props) {
     alt: addInfo.title,
     style: {
       visibility: imageLoaded ? 'visible' : 'hidden'
-    }
+    },
+    "data-test-id": "add-block-img"
   }));
 };
 
@@ -241,7 +245,6 @@ var AddProvider = function AddProvider(_ref) {
               addKey: addSlots[index]
             };
           });
-          console.log(advertisersMapToAdd);
           dispatch({
             type: 'SET_ADVERTISERS',
             payload: advertisersMapToAdd
@@ -261,11 +264,12 @@ var AddProvider = function AddProvider(_ref) {
     if (!clientId) {
       console.error('clientId is required.');
     }
-
+  }, []);
+  React.useEffect(function () {
     if (clientId && addSlots.length > 0) {
       fetchAdvisers(addSlots);
     }
-  }, [addSlots]);
+  }, [addSlots, clientId]);
   return React__default.createElement("div", null, React__default.createElement(AppContext.Provider, {
     value: {
       advertisers: advertisers,

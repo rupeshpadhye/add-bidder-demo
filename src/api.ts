@@ -7,8 +7,7 @@ export const getAdvertisers =  async (
   exclude: any,
   clientId: string
 ): Promise<string []> => {
-  console.log('exclude 2434',exclude)
-
+  console.log('exclude',exclude)
   const response = await fetch(`${API_URL}/advertisers?count=${count}&clientId=${clientId}`)
   return response.json()
 }

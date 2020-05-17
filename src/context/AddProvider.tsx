@@ -43,7 +43,6 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
           addKey: addSlots[index]
         }
       })
-      console.log(advertisersMapToAdd)
       dispatch({
         type: 'SET_ADVERTISERS',
         payload: advertisersMapToAdd
@@ -57,10 +56,13 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
     if (!clientId) {
       console.error('clientId is required.')
     }
+  },[])
+
+  useEffect(() => {
     if (clientId && addSlots.length > 0) {
       fetchAdvisers(addSlots)
     }
-  }, [addSlots])
+  }, [addSlots,clientId])
   return (
     <div>
       <AppContext.Provider

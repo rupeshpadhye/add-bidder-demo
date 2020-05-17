@@ -7,7 +7,8 @@ import { getAdvertise } from '../api'
 type AddSize = 'banner' | 'square' | 'learderboard'
 
 interface AddProps {
-  size: AddSize
+  size: AddSize,
+  addKey?: string
 }
 const ADD_DIMENSION = {
   banner: {
@@ -38,7 +39,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
     }
   }
   useEffect(() => {
-    const key = `${Math.floor(Math.random() * 1000000)}`
+    const key = props.addKey || `${Math.floor(Math.random() * 1000000)}`
     registerAdd(key)
     setKey(key)
   }, [])
@@ -48,7 +49,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
     if (advertiser && !addInfo) {
       fetchAdvertise(advertiser)
     }
-  }, [advertisers])
+  }, [advertisers, key])
 
   return (
     <a
@@ -58,15 +59,17 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
         height: dimension.height,
         display: 'inline-block'
       }}
-      key={key}
+      id={key}
       href={addInfo && addInfo.url}
       target='_blank'
       rel='noreferrer'
       onClick={onAddClicked}
+      data-test-id="add-block"
     >
-      {imageLoaded && <span className={styles.add_label}>Ad</span>}
+      {imageLoaded && <span data-test-id="add-block-placeholder" className={styles.add_label}>Ad</span>}
       {!imageLoaded ? (
         <img
+         data-test-id="add-block-dummy-image"
          decoding="async"
           src={`https://via.placeholder.com/${dimension.width}x${dimension.height}.png?text=AD`}
         />
@@ -79,6 +82,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
           src={addInfo.img}
           alt={addInfo.title}
           style={{ visibility: imageLoaded ? 'visible' : 'hidden' }}
+          data-test-id="add-block-img"
         />
       )}
     </a>
