@@ -1,4 +1,4 @@
-# Add Bidder Demo[Demo Link](https://rupeshpadhye.github.io/add-bidder-demo/)
+# Add Bidder Demo [Demo Link](https://rupeshpadhye.github.io/add-bidder-demo/)
 
 > This is demo client side add bidder library , client can consume this library to show
  adds on there sites
@@ -6,7 +6,7 @@
 ## BoilerPlate Code 
 [boiler plate code is taken from create-react-library ](https://github.com/transitive-bullshit/create-react-library)
 
-## Development
+## Local Development
 
 Local development is broken into two parts (ideally using two tabs).
 
@@ -24,7 +24,7 @@ cd example
 yarn start # runs create-react-app dev server
 ```
 ## Add Bidder API Dependency 
-[Refer instructions given in ](https://github.com/rupeshpadhye/add-bidder-demo)
+[Refer this repository](https://github.com/rupeshpadhye/add-bidder-demo)
 
 
 ## Library Install
@@ -33,7 +33,7 @@ yarn start # runs create-react-app dev server
 npm install --save add-bidder
 ```
 
-## Usage
+## Library Usage
 
 ```tsx
 import React, { Component } from 'react'
