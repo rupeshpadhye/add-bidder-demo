@@ -3,6 +3,7 @@
     border: 1px solid #eee;
     text-align: center;
     position: relative;
+    box-sizing: border-box;
 }
 
 .add_label {

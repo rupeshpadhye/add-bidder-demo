@@ -50,12 +50,12 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
       fetchAdvertise(advertiser)
     }
   }, [advertisers, key])
-
+  const isSmallerDevice = window.innerWidth < dimension.width
   return (
     <a
       className={styles.add}
       style={{
-        width: dimension.width,
+        width: isSmallerDevice ? '100%': dimension.width,
         height: dimension.height,
         display: 'inline-block'
       }}
@@ -71,7 +71,7 @@ const Add: React.FC<AddProps> = (props: AddProps) => {
         <img
          data-test-id="add-block-dummy-image"
          decoding="async"
-          src={`https://via.placeholder.com/${dimension.width}x${dimension.height}.png?text=AD`}
+          src={`https://via.placeholder.com/${isSmallerDevice ? window.innerWidth:dimension.width}x${dimension.height}.png?text=AD`}
         />
       ) : null}
       {addInfo && (
