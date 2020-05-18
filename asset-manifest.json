@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/add-bidder-demo/static/css/main.83519e8d.chunk.css",
-    "main.js": "/add-bidder-demo/static/js/main.69a99932.chunk.js",
-    "main.js.map": "/add-bidder-demo/static/js/main.69a99932.chunk.js.map",
+    "main.css": "/add-bidder-demo/static/css/main.eb4b0d00.chunk.css",
+    "main.js": "/add-bidder-demo/static/js/main.dd4b05c5.chunk.js",
+    "main.js.map": "/add-bidder-demo/static/js/main.dd4b05c5.chunk.js.map",
     "runtime-main.js": "/add-bidder-demo/static/js/runtime-main.a177d338.js",
     "runtime-main.js.map": "/add-bidder-demo/static/js/runtime-main.a177d338.js.map",
     "static/js/2.c79c07e2.chunk.js": "/add-bidder-demo/static/js/2.c79c07e2.chunk.js",
     "static/js/2.c79c07e2.chunk.js.map": "/add-bidder-demo/static/js/2.c79c07e2.chunk.js.map",
     "index.html": "/add-bidder-demo/index.html",
-    "precache-manifest.582d8ee01ebdff35135d1364632340ef.js": "/add-bidder-demo/precache-manifest.582d8ee01ebdff35135d1364632340ef.js",
+    "precache-manifest.143a313da5cf85f882b23093de8e32a1.js": "/add-bidder-demo/precache-manifest.143a313da5cf85f882b23093de8e32a1.js",
     "service-worker.js": "/add-bidder-demo/service-worker.js",
-    "static/css/main.83519e8d.chunk.css.map": "/add-bidder-demo/static/css/main.83519e8d.chunk.css.map",
+    "static/css/main.eb4b0d00.chunk.css.map": "/add-bidder-demo/static/css/main.eb4b0d00.chunk.css.map",
     "static/js/2.c79c07e2.chunk.js.LICENSE.txt": "/add-bidder-demo/static/js/2.c79c07e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a177d338.js",
     "static/js/2.c79c07e2.chunk.js",
-    "static/css/main.83519e8d.chunk.css",
-    "static/js/main.69a99932.chunk.js"
+    "static/css/main.eb4b0d00.chunk.css",
+    "static/js/main.dd4b05c5.chunk.js"
   ]
 }
