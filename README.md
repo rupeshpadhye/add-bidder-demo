@@ -25,6 +25,10 @@ yarn start # runs create-react-app dev server
 [Refer this repository](https://github.com/rupeshpadhye/add-bidder-demo)
 
 
+###### Example 
+![Demo Example](screenshots/demo.png)
+
+
 ## Library Install
 
 ```bash

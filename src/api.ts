@@ -4,10 +4,9 @@ import {AddItem } from './types'
 let API_URL='';
 export const getAdvertisers =  async (
   count: number,
-  exclude: any,
   clientId: string
 ): Promise<string []> => {
-  console.log('exclude',exclude)
+  //console.log('exclude',exclude)
   const response = await fetch(`${API_URL}/advertisers?count=${count}&clientId=${clientId}`)
   return response.json()
 }

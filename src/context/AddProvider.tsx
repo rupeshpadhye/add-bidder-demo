@@ -33,7 +33,6 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
     try {
       const availableAdvertisers: string [] = await getAdvertisers(
         addSlots.length,
-        advertisers,
         clientId
       )
       const advertisersMapToAdd : AdvertiserAddMapping [] = 
