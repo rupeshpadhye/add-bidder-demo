@@ -1,5 +1,5 @@
 # Add Bidder Demo
-
+> Demonstrates the React Hooks API and Context API usage
 > This is demo client side add bidder library , client can consume this library to show
  adds on there sites
 
@@ -21,9 +21,6 @@ The second part will be running the `example/` create-react-app that's linked to
 cd example
 yarn start # runs create-react-app dev server
 ```
-## Add Bidder API Dependency 
-[Refer this repository](https://github.com/rupeshpadhye/add-bidder-demo)
-
 
 ###### Example 
 ![Demo Example](screenshots/demo.png)

@@ -24,24 +24,25 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
 
   const addConversion = async (uid: string) => {
     try {
-      await recordConversions(uid,clientId)
+      await recordConversions(uid, clientId)
     } catch (err) {
       console.log(err)
     }
   }
   const fetchAdvisers = async (addSlots: string[]) => {
     try {
-      const availableAdvertisers: string [] = await getAdvertisers(
+      const availableAdvertisers: string[] = await getAdvertisers(
         addSlots.length,
         clientId
       )
-      const advertisersMapToAdd : AdvertiserAddMapping [] = 
-      availableAdvertisers.map((a, index) => {
-        return {
-          advertiser: a,
-          addKey: addSlots[index]
+      const advertisersMapToAdd: AdvertiserAddMapping[] = availableAdvertisers.map(
+        (a, index) => {
+          return {
+            advertiser: a,
+            addKey: addSlots[index]
+          }
         }
-      })
+      )
       dispatch({
         type: 'SET_ADVERTISERS',
         payload: advertisersMapToAdd
@@ -55,13 +56,13 @@ const AddProvider: React.FC<addProviderProps> = ({ clientId, children }) => {
     if (!clientId) {
       console.error('clientId is required.')
     }
-  },[])
+  }, [])
 
   useEffect(() => {
     if (clientId && addSlots.length > 0) {
       fetchAdvisers(addSlots)
     }
-  }, [addSlots,clientId])
+  }, [addSlots, clientId])
   return (
     <div>
       <AppContext.Provider
